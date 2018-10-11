@@ -6,17 +6,19 @@ import { catchError } from 'rxjs/operators';
 import { User } from '../components/models/user.interface';
 import { AlertifyService } from '../services/alertify.service';
 import { UserService } from '../services/user.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
-export class MemberDetailResolver implements Resolve<User> {
+export class MemberEditResolver implements Resolve<User> {
 
   constructor(private router: Router,
+    private authService: AuthService,
     private userService: UserService,
     private alertifyService: AlertifyService) {
   }
 
   resolve(route: ActivatedRouteSnapshot): Observable<User> {
-    const userId = route.params['id'];
+    const userId = this.authService.decodedToken.nameid;
 
     return this.userService.getUser(userId)
       .pipe(
