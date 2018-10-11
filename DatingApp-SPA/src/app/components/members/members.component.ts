@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { User } from '../models/user.interface';
 
 @Component({
   selector: 'app-members',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MembersComponent implements OnInit {
 
-  constructor() { }
+  users: User[];
+
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.route.data.subscribe(data => {
+      this.users = data['users'];
+    });
   }
 
 }
