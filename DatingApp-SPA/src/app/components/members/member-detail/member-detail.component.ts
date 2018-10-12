@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from 'ngx-gallery';
 
-import { User } from '../../models/user.interface';
+import { User } from '../../../models/user.interface';
 
 @Component({
   selector: 'app-member-detail',
@@ -10,6 +10,8 @@ import { User } from '../../models/user.interface';
   styleUrls: ['./member-detail.component.css']
 })
 export class MemberDetailComponent implements OnInit {
+
+  public readonly DEFAULT_PHOTO_URL = '../../../assets/user.png';
 
   user: User;
   galleryOptions: NgxGalleryOptions[];

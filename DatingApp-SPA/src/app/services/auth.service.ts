@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-import { User } from '../components/models/user.interface';
+import { User } from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +13,13 @@ import { User } from '../components/models/user.interface';
 export class AuthService {
 
   private readonly AUTH_URL = `${environment.apiUrl}/auth`;
+  private readonly DEFAULT_PHOTO_URL = '../../assets/user.png';
 
   jwtHelper = new JwtHelperService();
   decodedToken: any;
   currentUser: User;
 
-  photoUrlSubject = new BehaviorSubject<string>('../../assets/user.png');
+  photoUrlSubject = new BehaviorSubject<string>(this.DEFAULT_PHOTO_URL);
   currentPhotoUrl = this.photoUrlSubject.asObservable();
 
   constructor(private http: HttpClient) { }
@@ -30,8 +31,10 @@ export class AuthService {
 
   readCurrentUserFromStorage() {
     const user = localStorage.getItem('user');
-    this.currentUser = JSON.parse(user);
-    this.changeMainPhotoUrl(this.currentUser.photoUrl);
+    if (user) {
+      this.currentUser = JSON.parse(user);
+      this.changeMainPhotoUrl(this.currentUser.photoUrl);
+    }
   }
 
   isLoggedIn() {
@@ -39,8 +42,8 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
-  register(model: any) {
-    return this.http.post(`${this.AUTH_URL}/register`, model);
+  register(user: User) {
+    return this.http.post(`${this.AUTH_URL}/register`, user);
   }
 
   login(model: any) {
@@ -62,7 +65,6 @@ export class AuthService {
     this.decodedToken = null;
     this.currentUser = null;
     localStorage.removeItem('user');
-
     localStorage.removeItem('token');
   }
 

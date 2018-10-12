@@ -11,6 +11,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavComponent implements OnInit {
 
+  public readonly DEFAULT_PHOTO_URL = '../../assets/user.png';
+
   model: any = {};
   photoUrl: string;
 

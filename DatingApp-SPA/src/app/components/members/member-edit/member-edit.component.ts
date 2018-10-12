@@ -5,7 +5,7 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
-import { User } from '../../models/user.interface';
+import { User } from '../../../models/user.interface';
 
 @Component({
   selector: 'app-member-edit',
@@ -13,6 +13,8 @@ import { User } from '../../models/user.interface';
   styleUrls: ['./member-edit.component.css']
 })
 export class MemberEditComponent implements OnInit {
+
+  public readonly DEFAULT_PHOTO_URL = '../../../assets/user.png';
 
   @ViewChild('editForm') editForm: NgForm;
 

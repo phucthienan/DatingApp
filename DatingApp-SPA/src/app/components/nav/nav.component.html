@@ -16,7 +16,7 @@
 
     <div *ngIf="isLoggedIn()" dropdown class="dropdown">
       <span class="mr-1">
-        <img [src]="photoUrl" [alt]="user?.username" class="img-thumbnail">
+        <img [src]="photoUrl || DEFAULT_PHOTO_URL" [alt]="user?.username" class="img-thumbnail">
       </span>
       <a class="dropdown-toggle text-light" dropdownToggle>
         Welcome {{ user?.username }}

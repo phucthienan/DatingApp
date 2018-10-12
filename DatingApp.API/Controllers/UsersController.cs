@@ -34,7 +34,8 @@ namespace DatingApp.API.Controllers
             return Ok(usersToReturn);
         }
 
-        [HttpGet("{id}")]
+        [AllowAnonymous]
+        [HttpGet("{id}", Name = "GetUser")]
         public async Task<IActionResult> GetUser(int id)
         {
             var user = await _datingRepository.GetUser(id);
@@ -54,7 +55,8 @@ namespace DatingApp.API.Controllers
             var user = await _datingRepository.GetUser(id);
             _mapper.Map(userForUpdateDto, user);
 
-            if (await _datingRepository.SaveAll()){
+            if (await _datingRepository.SaveAll())
+            {
                 return NoContent();
             }
 

@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
 
-import { Photo } from '../../models/photo.interface';
+import { Photo } from '../../../models/photo.interface';
 
 @Component({
   selector: 'app-photo-editor',
@@ -58,6 +58,10 @@ export class PhotoEditorComponent implements OnInit {
           description: res.description,
           isMain: res.isMain
         };
+
+        if (photo.isMain) {
+          this.authService.changeMainPhotoUrl(photo.url);
+        }
 
         this.photos.push(photo);
       }

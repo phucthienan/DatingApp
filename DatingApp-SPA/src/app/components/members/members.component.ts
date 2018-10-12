@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { User } from '../models/user.interface';
+import { User } from '../../models/user.interface';
 
 @Component({
   selector: 'app-members',
