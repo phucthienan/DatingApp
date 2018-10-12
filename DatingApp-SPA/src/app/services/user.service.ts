@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -24,6 +24,17 @@ export class UserService {
 
   updateUser(id: number, user: User) {
     return this.http.put(`${this.USER_URL}/${id}`, user);
+  }
+
+  setMainPhoto(userId: number, id: number) {
+    return this.http.post(
+      `${this.USER_URL}/${userId}/photos/${id}/set-main`,
+      null
+    );
+  }
+
+  deletePhoto(userId: number, id: number) {
+    return this.http.delete(`${this.USER_URL}/${userId}/photos/${id}`);
   }
 
 }

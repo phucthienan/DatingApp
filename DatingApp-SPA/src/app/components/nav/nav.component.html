@@ -15,8 +15,11 @@
     </ul>
 
     <div *ngIf="isLoggedIn()" dropdown class="dropdown">
+      <span class="mr-1">
+        <img [src]="photoUrl" [alt]="user?.username" class="img-thumbnail">
+      </span>
       <a class="dropdown-toggle text-light" dropdownToggle>
-        Welcome {{ getUsername() }}
+        Welcome {{ user?.username }}
       </a>
       <div *dropdownMenu class="dropdown-menu mt-3">
         <a class="dropdown-item" [routerLink]="['/members', 'edit']"><i class="fa fa-user"></i> Edit Profile</a>

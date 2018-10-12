@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
+import { FileUploadModule } from 'ng2-file-upload';
 import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import { NgxGalleryModule } from 'ngx-gallery';
 
@@ -14,6 +15,7 @@ import { MemberCardComponent } from './components/members/member-card/member-car
 import { MemberDetailComponent } from './components/members/member-detail/member-detail.component';
 import { MemberEditComponent } from './components/members/member-edit/member-edit.component';
 import { MembersComponent } from './components/members/members.component';
+import { PhotoEditorComponent } from './components/members/photo-editor/photo-editor.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { NavComponent } from './components/nav/nav.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -39,7 +41,8 @@ import { UserService } from './services/user.service';
     MemberDetailComponent,
     MemberEditComponent,
     ListsComponent,
-    MessagesComponent
+    MessagesComponent,
+    PhotoEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { UserService } from './services/user.service';
       }
     }),
     NgxGalleryModule,
+    FileUploadModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot()
   ],

@@ -3,3 +3,11 @@
 .dropdown-item {
   cursor: pointer;
 }
+
+img {
+  max-height: 40px;
+  padding: 0;
+  border-radius: 0;
+  border: 2px solid #fff;
+  display: inline;
+}

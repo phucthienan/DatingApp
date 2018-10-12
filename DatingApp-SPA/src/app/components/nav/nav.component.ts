@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 export class NavComponent implements OnInit {
 
   model: any = {};
+  photoUrl: string;
 
   constructor(private authService: AuthService,
     private alertifyService: AlertifyService,
@@ -19,16 +20,16 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.currentPhotoUrl
+      .subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
   isLoggedIn() {
     return this.authService.isLoggedIn();
   }
 
-  getUsername() {
-    return this.authService.decodedToken
-      ? this.authService.decodedToken['unique_name']
-      : null;
+  get user() {
+    return this.authService.currentUser;
   }
 
   login() {

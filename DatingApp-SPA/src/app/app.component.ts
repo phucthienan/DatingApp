@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.authService.readTokenFromStorage();
+    this.authService.readCurrentUserFromStorage();
   }
 
 }
