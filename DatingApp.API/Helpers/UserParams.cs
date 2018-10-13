@@ -5,7 +5,7 @@ namespace DatingApp.API.Helpers
         private const int MaxPageSize = 50;
         public int PageNumber { get; set; } = 1;
         private int _pageSize = 10;
-        
+
         public int PageSize
         {
             get { return _pageSize; }
@@ -17,5 +17,7 @@ namespace DatingApp.API.Helpers
         public int MinAge { get; set; } = 18;
         public int MaxAge { get; set; } = 99;
         public string OrderBy { get; set; }
+        public bool Likers { get; set; } = false;
+        public bool Likees { get; set; } = false;
     }
 }
