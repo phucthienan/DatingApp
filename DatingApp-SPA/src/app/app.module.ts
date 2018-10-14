@@ -15,6 +15,7 @@ import { ListsComponent } from './components/lists/lists.component';
 import { MemberCardComponent } from './components/members/member-card/member-card.component';
 import { MemberDetailComponent } from './components/members/member-detail/member-detail.component';
 import { MemberEditComponent } from './components/members/member-edit/member-edit.component';
+import { MemberMessagesComponent } from './components/members/member-messages/member-messages.component';
 import { MembersComponent } from './components/members/members.component';
 import { PhotoEditorComponent } from './components/members/photo-editor/photo-editor.component';
 import { MessagesComponent } from './components/messages/messages.component';
@@ -26,6 +27,7 @@ import { ListsResolver } from './resolvers/lists.resolver';
 import { MemberDetailResolver } from './resolvers/member-detail.resolver';
 import { MemberEditResolver } from './resolvers/member-edit.resolver';
 import { MembersResolver } from './resolvers/members.resolver';
+import { MessagesResolver } from './resolvers/messages.resolver';
 import { appRoutes } from './routes';
 import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
@@ -41,6 +43,7 @@ import { UserService } from './services/user.service';
     MembersComponent,
     MemberCardComponent,
     MemberDetailComponent,
+    MemberMessagesComponent,
     MemberEditComponent,
     ListsComponent,
     MessagesComponent,
@@ -78,7 +81,8 @@ import { UserService } from './services/user.service';
     MembersResolver,
     MemberDetailResolver,
     MemberEditResolver,
-    ListsResolver
+    ListsResolver,
+    MessagesResolver
   ],
   bootstrap: [AppComponent]
 })

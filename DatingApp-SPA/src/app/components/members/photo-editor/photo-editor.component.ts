@@ -80,7 +80,7 @@ export class PhotoEditorComponent implements OnInit {
         this.currentMainPhoto.isMain = false;
         photo.isMain = true;
         this.authService.changeMainPhotoUrl(photo.url);
-        this.alertifyService.success('Set main photo successfully!');
+        this.alertifyService.success('Set main photo successfully');
       },
       error => this.alertifyService.error(error)
     );
@@ -94,9 +94,9 @@ export class PhotoEditorComponent implements OnInit {
         .subscribe(
           () => {
             this.photos.splice(this.photos.findIndex(p => p.id === id), 1);
-            this.alertifyService.success('Delete photo successfully!');
+            this.alertifyService.success('Delete photo successfully');
           },
-          error => this.alertifyService.error('Delete photo failed!')
+          error => this.alertifyService.error('Delete photo failed')
         );
     });
   }

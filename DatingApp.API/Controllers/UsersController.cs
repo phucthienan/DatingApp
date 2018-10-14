@@ -74,7 +74,7 @@ namespace DatingApp.API.Controllers
                 return NoContent();
             }
 
-            throw new Exception("Update user failed!");
+            throw new Exception("Update user failed");
         }
 
         [HttpPost("{id}/like/{recipientId}")]
