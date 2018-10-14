@@ -34,6 +34,10 @@ import { AuthService } from './services/auth.service';
 import { ErrorInterceptorProvider } from './services/error.interceptor';
 import { UserService } from './services/user.service';
 
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +62,7 @@ import { UserService } from './services/user.service';
     RouterModule.forRoot(appRoutes),
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => localStorage.getItem('token'),
+        tokenGetter: tokenGetter,
         whitelistedDomains: ['localhost:5000'],
         blacklistedRoutes: ['localhost:5000/api/auth']
       }
