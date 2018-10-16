@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListsComponent } from './components/lists/lists.component';
 import { MemberDetailComponent } from './components/members/member-detail/member-detail.component';
@@ -46,6 +47,11 @@ export const appRoutes: Routes = [
         path: 'messages',
         component: MessagesComponent,
         resolve: { messages: MessagesResolver }
+      },
+      {
+        path: 'admin',
+        component: AdminPanelComponent,
+        data: { roles: ['Admin', 'Moderator'] }
       }
     ]
   },

@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.API.Controllers
 {
-    [Authorize]
     [ServiceFilter(typeof(LogUserActivity))]
     [Route("api/[controller]")]
     [ApiController]
@@ -31,7 +30,7 @@ namespace DatingApp.API.Controllers
         public async Task<IActionResult> GetUsers([FromQuery] UserParams userParams)
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            var currentUser = await _datingRepository.GetUser(currentUserId);
+            var currentUser = await _datingRepository.GetUser(currentUserId, true);
 
             userParams.UserId = currentUserId;
 
@@ -52,7 +51,9 @@ namespace DatingApp.API.Controllers
         [HttpGet("{id}", Name = "GetUser")]
         public async Task<IActionResult> GetUser(int id)
         {
-            var user = await _datingRepository.GetUser(id);
+            var isCurrentUser = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value) == id;
+
+            var user = await _datingRepository.GetUser(id, isCurrentUser);
             var userToReturn = _mapper.Map<UserForDetailDto>(user);
 
             return Ok(userToReturn);
@@ -66,7 +67,7 @@ namespace DatingApp.API.Controllers
                 return Unauthorized();
             }
 
-            var user = await _datingRepository.GetUser(id);
+            var user = await _datingRepository.GetUser(id, true);
             _mapper.Map(userForUpdateDto, user);
 
             if (await _datingRepository.SaveAll())
@@ -92,7 +93,7 @@ namespace DatingApp.API.Controllers
                 return BadRequest("You already like this user");
             }
 
-            if (await _datingRepository.GetUser(recipientId) == null)
+            if (await _datingRepository.GetUser(recipientId, false) == null)
             {
                 return NotFound();
             }
@@ -105,7 +106,8 @@ namespace DatingApp.API.Controllers
 
             _datingRepository.Add(like);
 
-            if (await _datingRepository.SaveAll()){
+            if (await _datingRepository.SaveAll())
+            {
                 return Ok();
             }
 

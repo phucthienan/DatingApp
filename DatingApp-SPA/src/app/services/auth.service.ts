@@ -42,6 +42,19 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
+  isRoleMatch(allowedRoles: string[]): boolean {
+    let result = false;
+    const userRoles = this.decodedToken.role as Array<string>;
+    allowedRoles.forEach(allowedRole => {
+      if (userRoles.includes(allowedRole)) {
+        result = true;
+        return;
+      }
+    });
+
+    return result;
+  }
+
   register(user: User) {
     return this.http.post(`${this.AUTH_URL}/register`, user);
   }
